@@ -1,0 +1,3 @@
+Speaker 1 (00:00):
+In this module, we'll look at a more powerful model of computation called a Context Free Grammar, and we'll see that regular languages are a proper subset of context free languages. We'll also take a look at parsing, which is when we want to find a sequence of productions that produces a particular string. We'll see that some grammars are ambiguous, allowing different ways of producing the same string.
+

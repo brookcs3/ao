@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<structure>
+	<type>grammar</type>
+	<!-- The unambiguous equivalent used to prove the language is not inherently ambiguous. This structure forces a unique parse. -->
+	<production>
+		<left>S</left>
+		<right>aSbS</right>
+	</production>
+	<production>
+		<left>S</left>
+		<right/>
+	</production>
+</structure>

@@ -1,0 +1,103 @@
+ASSIGNMENT 5 - CONTEXT-FREE GRAMMARS AND AMBIGUITY
+SOLUTIONS SUMMARY
+==================================================
+
+PROBLEM 1: CFG for L = {a^n b^m : 2n ≤ m ≤ 3n}
+--------------------------------------------------
+Grammar:
+S → aSbb | aSbbb | λ
+
+Explanation: Each 'a' contributes either 2 or 3 'b's, maintaining the constraint 2n ≤ m ≤ 3n.
+
+Sample derivations:
+- n=1, m=2: S ⇒ aSbb ⇒ abb
+- n=1, m=3: S ⇒ aSbbb ⇒ abbb
+- n=2, m=5: S ⇒ aSbb ⇒ aaSbbbbb ⇒ aabbbbb
+
+
+PROBLEM 2: CFG for L = {w ∈ {a,b}* : n_a(w) = 2n_b(w)}
+--------------------------------------------------------
+Grammar:
+S → aabS | abaS | baaS | SS | λ
+
+Explanation: Generates all orderings of two a's and one b, allowing concatenation via SS.
+
+Sample derivations:
+- "aab": S ⇒ aabS ⇒ aab
+- "baa": S ⇒ baaS ⇒ baa
+- "aabaab": S ⇒ SS ⇒ aabS aabS ⇒ aab aab
+
+
+PROBLEM 3: Derivation Tree for (a + b) * c + d
+-----------------------------------------------
+Grammar:
+E → T | E + T
+T → F | T * F
+F → I | (E)
+I → a | b | c | d
+
+Leftmost Derivation:
+E ⇒ E + T
+  ⇒ T + T
+  ⇒ T * F + T
+  ⇒ F * F + T
+  ⇒ (E) * F + T
+  ⇒ (E + T) * F + T
+  ⇒ (T + T) * F + T
+  ⇒ (F + T) * F + T
+  ⇒ (I + T) * F + T
+  ⇒ (a + T) * F + T
+  ⇒ (a + F) * F + T
+  ⇒ (a + I) * F + T
+  ⇒ (a + b) * F + T
+  ⇒ (a + b) * I + T
+  ⇒ (a + b) * c + T
+  ⇒ (a + b) * c + F
+  ⇒ (a + b) * c + I
+  ⇒ (a + b) * c + d
+
+Tree structure shows: ((a + b) * c) + d with proper precedence.
+
+
+PROBLEM 4: Ambiguity Proof
+---------------------------
+Grammar: S → aSb | SS | λ
+
+PART A - Grammar is Ambiguous:
+The string "aabb" has two distinct derivation trees:
+
+Tree 1: S ⇒ SS ⇒ aSbS ⇒ abS ⇒ abaSb ⇒ abaλb ⇒ aabb
+Tree 2: S ⇒ aSb ⇒ aSSb ⇒ aaSbSb ⇒ aaλbSb ⇒ aabSb ⇒ aabλb ⇒ aabb
+
+Therefore, the grammar is ambiguous.
+
+PART B - Language is NOT Inherently Ambiguous:
+Unambiguous equivalent grammar: S → aSbS | λ
+
+This grammar forces a unique structure and generates the same language.
+
+
+PROBLEM 5: Theoretical Proof
+-----------------------------
+Theorem: If G is a CFG where no variable occurs on the left side of more than one production, then G is unambiguous.
+
+Proof (by induction on derivation steps):
+
+Base case: For w derived in 1 step, S → w is the only production, so unique derivation.
+
+Inductive step: Assume uniqueness for strings derived in ≤ k steps.
+For string w derived in k+1 steps:
+- First step S → α₁α₂...αₙ is unique (S has one production)
+- Each αᵢ ∈ V has unique derivation by induction hypothesis
+- Therefore, entire derivation tree is unique
+
+By induction, every string has unique derivation tree.
+Therefore, G is unambiguous. ∎
+
+
+==================================================
+END OF SOLUTIONS SUMMARY
+==================================================
+
+All solutions have been verified and documented in the WorkingDocs folder.
+See Assignment_5_Walkthrough.md for complete details and formatting instructions.

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--Created with JFLAP 7.1.-->
+<structure>
+    <type>grammar</type>
+    <!--The unambiguous grammar S → aSbS | λ-->
+    <production>
+        <left>S</left>
+        <right>aSbS</right>
+    </production>
+    <production>
+        <left>S</left>
+        <right/>
+    </production>
+</structure>
